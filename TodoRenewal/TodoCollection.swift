@@ -22,6 +22,7 @@ class TodoCollection: NSObject {
         if let todoList = defaults.objectForKey("todoLists") as? Array<Dictionary<String, AnyObject>> {
             for todoDic in todoList {
                 let todo = TodoCollection.convertTodoModel(todoDic)
+                todo.fetchComments() // New
                 self.todos.append(todo)
             }
         }
@@ -43,6 +44,7 @@ class TodoCollection: NSObject {
         todo.title = attiributes["title"] as! String
         todo.descript = attiributes["descript"] as! String
         todo.priority = TodoPriority(rawValue: attiributes["priority"] as! Int)!
+        todo.id = attiributes["id"] as! String! // New
         return todo
     }
     
@@ -51,6 +53,7 @@ class TodoCollection: NSObject {
         dic["title"] = todo.title
         dic["descript"] = todo.descript
         dic["priority"] = todo.priority.rawValue
+        dic["id"] = todo.id // New
         return dic
     }
     
