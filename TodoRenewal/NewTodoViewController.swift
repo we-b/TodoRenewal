@@ -52,6 +52,7 @@ class NewTodoViewController: UIViewController, UITextFieldDelegate {
             todo.title = todoField.text!
             todo.descript = descriptionView.text
             todo.priority = TodoPriority(rawValue: prioritySegment.selectedSegmentIndex)!
+            todo.createId()
             self.todoCollection.addTodoCollection(todo)
             print(self.todoCollection.todos)
             self.dismissViewControllerAnimated(true, completion: nil)
